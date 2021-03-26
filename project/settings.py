@@ -19,11 +19,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env(
     DEBUG=(bool, False),
     ENVIRONMENT=(str, "PRODUCTION"),
-    CORS_ALLOW_ALL_ORIGINS=(bool, False),
+    ALLOW_ALL_ORIGINS=(bool, False),
     ALLOWED_HOSTS=(list, []),
     ALLOWED_ORIGINS=(list, []),
     DATABASE_ENGINE=(str, "django.db.backends.sqlite3"),
     DATABASE_NAME=(str, BASE_DIR / "db.sqlite3"),
+    DATABASE_USER=(str, ""),
+    DATABASE_PASSWORD=(str, ""),
+    DATABASE_HOST=(str, ""),
+    DATABASE_PORT=(int, 5432),
 )
 
 environ.Env.read_env()
@@ -97,10 +101,10 @@ DATABASES = {
     "default": {
         "ENGINE": env.str("DATABASE_ENGINE"),
         "NAME": env.str("DATABASE_NAME"),
-        "USER": env.str("DATABASE_USER", ""),
-        "PASSWORD": env.str("DATABASE_PASSWORD", ""),
-        "HOST": env.str("DATABASE_HOST", ""),
-        "PORT": env.int("DATABASE_PORT", ""),
+        "USER": env.str("DATABASE_USER"),
+        "PASSWORD": env.str("DATABASE_PASSWORD"),
+        "HOST": env.str("DATABASE_HOST"),
+        "PORT": env.int("DATABASE_PORT"),
     }
 }
 
@@ -159,5 +163,3 @@ REST_FRAMEWORK = {
 
 CORS_ORIGIN_WHITELIST = tuple(env.list("ALLOWED_ORIGINS"))
 CORS_ALLOW_ALL_ORIGINS = env.bool("ALLOW_ALL_ORIGINS")
-
-print("CORS_ALLOW_ALL_ORIGINS", CORS_ALLOW_ALL_ORIGINS)
