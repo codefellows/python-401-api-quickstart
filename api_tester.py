@@ -1,9 +1,13 @@
 import fire
 import requests
 
+RESOURCE_URI = "things"
+USERNAME = "admin"
+PASSWORD = "admin"
+
 
 class ApiTester:
-    """CLI for testing Things API"""
+    """CLI for testing API"""
 
     def __init__(self, host="http://localhost:8000"):
         self.host = host
@@ -18,7 +22,7 @@ class ApiTester:
         token_url = f"{self.host}/api/token/"
 
         response = requests.post(
-            token_url, json={"username": "admin", "password": "admin"}
+            token_url, json={"username": USERNAME, "password": PASSWORD}
         )
 
         data = response.json()
@@ -27,15 +31,15 @@ class ApiTester:
 
         return tokens
 
-    def get_things(self):
-        """get list of all things from api
-        Usage: python api_tester.py get_things
+    def get_all(self):
+        """get list of all resources from api
+        Usage: python api_tester.py get_all
 
         Returns: JSON
         """
         access_token = self.fetch_tokens()[0]
 
-        url = f"{self.host}/api/v1/things/"
+        url = f"{self.host}/api/v1/{RESOURCE_URI}/"
 
         headers = {
             "Authorization": f"Bearer {access_token}",
@@ -45,17 +49,17 @@ class ApiTester:
 
         return response.json()
 
-    def get_thing(self, id):
-        """get 1 thing by id from api
+    def get_one(self, id):
+        """get 1 resource by id from api
 
         Usage:
-        python api_tester.py get_thing 1
+        python api_tester.py get_one 1
 
         Returns: JSON
         """
         access_token = self.fetch_tokens()[0]
 
-        url = f"{self.host}/api/v1/things/{id}"
+        url = f"{self.host}/api/v1/{RESOURCE_URI}/{id}"
 
         headers = {
             "Authorization": f"Bearer {access_token}",
@@ -65,11 +69,12 @@ class ApiTester:
 
         return response.json()
 
-    def create_thing(self, name, description=None, owner=None):
-        """creates a thing in api
+    # TODO adjust parameter names to match API
+    def create(self, location, description=None, owner=None):
+        """creates a resource in api
 
         Usage:
-        python api_tester.py create_thing /
+        python api_tester.py create /
             --name=required --description=optional --owner=optional
 
         Returns: JSON
@@ -77,14 +82,14 @@ class ApiTester:
 
         access_token = self.fetch_tokens()[0]
 
-        url = f"{self.host}/api/v1/things/"
+        url = f"{self.host}/api/v1/{RESOURCE_URI}/"
 
         headers = {
             "Authorization": f"Bearer {access_token}",
         }
 
         data = {
-            "name": name,
+            "location": location,
             "description": description,
             "owner": owner,
         }
@@ -93,11 +98,11 @@ class ApiTester:
 
         return response.json()
 
-    def update_thing(self, id, name=None, description=None, owner=None):
-        """updates a thing in api
+    def update(self, id, name=None, description=None, owner=None):
+        """updates a resource in api
 
         Usage:
-        python api_tester.py update_thing 1 /
+        python api_tester.py update 1 /
             --name=optional --description=optional --owner=optional
 
         Returns: JSON
@@ -105,36 +110,36 @@ class ApiTester:
 
         access_token = self.fetch_tokens()[0]
 
-        url = f"{self.host}/api/v1/things/{id}/"
+        url = f"{self.host}/api/v1/{RESOURCE_URI}/{id}/"
 
         headers = {
             "Authorization": f"Bearer {access_token}",
         }
 
-        original_thing = self.get_thing(id)
+        original = self.get_cookiestand(id)
 
         data = {
-            "name": name or original_thing["name"],
-            "description": description or original_thing["description"],
-            "owner": owner or original_thing["owner"],
+            "name": name or original["name"],
+            "description": description or original["description"],
+            "owner": owner or original["owner"],
         }
 
         response = requests.put(url, json=data, headers=headers)
 
         return response.text
 
-    def delete_thing(self, id):
-        """deletes a thing in api
+    def delete(self, id):
+        """deletes a resource in api
 
         Usage:
-        python api_tester.py delete_thing 1
+        python api_tester.py delete 1
 
         Returns: Empty string if no error
         """
 
         access_token = self.fetch_tokens()[0]
 
-        url = f"{self.host}/api/v1/things/{id}/"
+        url = f"{self.host}/api/v1/{RESOURCE_URI}/{id}/"
 
         headers = {
             "Authorization": f"Bearer {access_token}",
