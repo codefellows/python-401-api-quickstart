@@ -1,6 +1,7 @@
 import fire
 import requests
 
+API_HOST = "http://localhost:8000"
 RESOURCE_URI = "things"
 USERNAME = "admin"
 PASSWORD = "admin"
@@ -9,7 +10,7 @@ PASSWORD = "admin"
 class ApiTester:
     """CLI for testing API"""
 
-    def __init__(self, host="http://localhost:8000"):
+    def __init__(self, host=API_HOST):
         self.host = host
 
     def fetch_tokens(self):
