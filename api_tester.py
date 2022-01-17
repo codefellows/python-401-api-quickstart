@@ -121,7 +121,7 @@ class ApiTester:
             "Authorization": f"Bearer {access_token}",
         }
 
-        original = self.get_cookiestand(id)
+        original = self.get_one(id)
 
         data = {
             "name": name or original["name"],
