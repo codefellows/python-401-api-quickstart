@@ -1,6 +1,7 @@
 import fire
 import requests
 
+# NOTE: Adjust these settings as needed
 API_HOST = "http://localhost:8000"
 RESOURCE_URI = "things"
 USERNAME = "admin"
@@ -52,7 +53,7 @@ class ApiTester:
 
         response = requests.get(url, headers=headers)
 
-        return response.json()
+        return response.json() or 'No resources'
 
     def get_one(self, id):
         """get 1 resource by id from api
