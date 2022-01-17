@@ -8,7 +8,11 @@ PASSWORD = "admin"
 
 
 class ApiTester:
-    """CLI for testing API"""
+    """CLI for testing API
+    Server must be running.
+    WARNING: Database queries are performed on supplied database.
+        So be extra careful and/or use a test database.
+    """
 
     def __init__(self, host=API_HOST):
         self.host = host
