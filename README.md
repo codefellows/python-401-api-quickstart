@@ -21,4 +21,5 @@ Template Project for starting up CRUD API with Django Rest Framework
   - Make sure to update other modules that would be affected by Model customizations. E.g. serializers, tests, etc.
 - Rename `project/.env.sample` to `.env` and update as needed
 - Run makemigrations and migrate commands
+- Run `collectstatic` if needed.
 - Optional: Update `api_tester.py`
