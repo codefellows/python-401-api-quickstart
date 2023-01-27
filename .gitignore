@@ -117,6 +117,8 @@ venv.bak/
 # js
 node_modules/
 .next/
+package-lock.json
+static/CACHE/
 
 # poetry
 poetry.lock
