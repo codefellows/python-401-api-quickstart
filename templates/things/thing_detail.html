@@ -7,4 +7,5 @@
   <p>Reviewer: {{ thing.reviewer }}</p>
   <a href="{% url 'thing_update' thing.pk %}">+ Update</a>
   <a href="{% url 'thing_delete' thing.pk %}">+ Delete</a>
+  <p>{{ thing.description }}</p>
 {% endblock content %}
