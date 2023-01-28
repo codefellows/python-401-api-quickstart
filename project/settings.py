@@ -59,7 +59,6 @@ INSTALLED_APPS = [
     # 3rd party
     "rest_framework",
     "corsheaders",
-    "compressor",
     # local
     "accounts",
     "things",
@@ -176,10 +175,10 @@ CORS_ORIGIN_WHITELIST = tuple(env.list("ALLOWED_ORIGINS"))
 CORS_ALLOW_ALL_ORIGINS = env.bool("ALLOW_ALL_ORIGINS")
 
 # TAILWIND
-COMPRESS_ROOT = BASE_DIR / 'static'
-COMPRESS_ENABLED = True
-STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
 
-
+# AUTH
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
