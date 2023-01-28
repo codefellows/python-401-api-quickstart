@@ -4,15 +4,22 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-  Hi {{ user.username }}!
-  <p><a href="{% url 'logout' %}">Log Out</a></p>
-  <p><a href="{% url 'thing_list' %}">List of Things</a></p>
+  <div class="space-y-8">
+
+  <h2 class="text-4xl">Hi {{ user.username }}!</h2>
+  <p>Maybe one day you'll see a glorious home page here.</p>
+  <p>But for now just  notice that List and Create are in Nav bar.</p>
+  </div>
+
 {% else %}
-  <h2 class="text-2xl">Hi there. You're not logged in.</h2>
+  <div class="flex flex-col space-y-8">
+
+  <h2 class="text-4xl">Hi there. You're not logged in :(</h2>
   <p>To get all the "things" you need to log in, or set up an account.</p>
   <p>Though I suppose you could check out the About page.</p>
   <p>And don't bother trying to enter the url to the things, it'll just kick you to the login screen ;)</p>
-  <a class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" href="{% url 'login' %}">Log In</a> |
-  <a class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" href="{% url 'signup' %}">Sign Up</a>
+  <a class="w-1/4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" href="{% url 'login' %}">Log In</a>
+  <a class="w-1/4 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" href="{% url 'signup' %}">Sign Up</a>
+  </div>
 {% endif %}
 {% endblock %}
