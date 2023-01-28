@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Update Thing</h1>
-  <form method="POST">
-
-    {{ form.as_p }}
-    <input type="submit" value="SAVE">
-  </form>
+{#  <h1>Update Thing</h1>#}
+{#  <form method="POST">#}
+{##}
+{#    {{ form.as_p }}#}
+{#    <input type="submit" value="SAVE">#}
+{#  </form>#}
 
     <div
     class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
@@ -14,14 +14,14 @@
       {% csrf_token %}
       <h5 class="text-xl font-medium text-gray-900 dark:text-white">Update a Thing</h5>
       <div>
-        <label for="id_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Thing Name</label>
+        <label for="id_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
         <input type="text" name="name" id="id_name"
                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                 required value="{{ thing.name }}">
 
       </div>
       <div>
-        <label for="id_rating" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Thing Rating</label>
+        <label for="id_rating" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rating</label>
         <input type="number" name="rating" id="id_rating"
                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                value="{{ thing.rating }}" required>
@@ -30,13 +30,13 @@
         <label for="id_reviewer" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Reviewer</label>
         <select name="reviewer" id="id_reviewer">
           {% for value, choice in form.fields.reviewer.choices %}
-            <option value="{{ value }}" selected="{{ True }}">{{  choice }}</option>
+            <option value="{{ value }}" {% if value == thing.reviewer.id %}selected{% endif %}>{{  choice }}</option>
           {% endfor %}
         </select>
       </div>
 
     <div>
-        <label for="id_description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Thing Description</label>
+        <label for="id_description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
         <textarea name="description" id="id_description"
                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                   placeholder="e.g. Celery gets a bad wrap" required>{{ thing.description }}</textarea>
@@ -45,7 +45,7 @@
 
       <button type="submit"
               class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-        Create
+        SAVE
       </button>
 
     </form>
