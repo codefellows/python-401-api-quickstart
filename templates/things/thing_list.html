@@ -1,19 +1,35 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
+
+  {#  Thanks to https://unsplash.com/photos/Kw_zQBAChws?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink#}
+  {# Also thanks https://daisyui.com/components/hero/ #}
+  <div class="hero min-h-screen" style="background-image: url({% static 'ashim-d-silva-Kw_zQBAChws-unsplash.jpg' %});">
+    <div class="hero-overlay bg-opacity-60"></div>
+    <div class="hero-content text-center text-neutral-content">
+      <div class="max-w-md bg-gray-50">
+        <h1 class="mb-5 text-5xl font-bold">Hello there</h1>
+        <p class="mb-5">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
+          quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+        <button class="btn btn-primary">Get Started</button>
+      </div>
+    </div>
+  </div>
+
   <div class="space-y-8 p-8">
 
-  <h1 class="text-4xl text-center">All the Things</h1>
-  <div
-    class="w-1/2 mx-auto text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-    {% for thing in things %}
-      <a href="{% url 'thing_detail' thing.pk %}" aria-current="true"
-         class="block w-full px-4 py-4 text-white bg-blue-700 border-b border-gray-200 rounded-t-lg cursor-pointer dark:bg-gray-800 dark:border-gray-600">
-        {{ thing.name }}
-      </a>
-    {% endfor %}
-  </div>
+    <h1 class="text-4xl text-center">All the Things</h1>
+    <div
+      class="w-1/2 mx-auto text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+      {% for thing in things %}
+        <a href="{% url 'thing_detail' thing.pk %}" aria-current="true"
+           class="block w-full px-4 py-4 text-white bg-blue-700 border-b border-gray-200 rounded-t-lg cursor-pointer dark:bg-gray-800 dark:border-gray-600">
+          {{ thing.name }}
+        </a>
+      {% endfor %}
+    </div>
 
   </div>
 
