@@ -1,25 +1,38 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Home{% endblock %}
 
 {% block content %}
-{% if user.is_authenticated %}
-  <div class="space-y-8">
+  {% if user.is_authenticated %}
+    <div class="space-y-8">
 
-  <h2 class="text-4xl">Hi {{ user.username }}!</h2>
-  <p>Maybe one day you'll see a glorious home page here.</p>
-  <p>But for now just  notice that List and Create are in Nav bar.</p>
-  </div>
+      <h2 class="text-4xl">Hi {{ user.username }}!</h2>
+      <p>Maybe one day you'll see a glorious home page here.</p>
+      <p>But for now just notice that List and Create are in Nav bar.</p>
+    </div>
 
-{% else %}
-  <div class="flex flex-col space-y-8">
+  {% else %}
 
-  <h2 class="text-4xl">Hi there. You're not logged in :(</h2>
-  <p>To get all the "things" you need to log in, or set up an account.</p>
-  <p>Though I suppose you could check out the About page.</p>
-  <p>And don't bother trying to enter the url to the things, it'll just kick you to the login screen ;)</p>
-  <a class="w-1/4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" href="{% url 'login' %}">Log In</a>
-  <a class="w-1/4 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" href="{% url 'signup' %}">Sign Up</a>
-  </div>
-{% endif %}
+    <div class="hero min-h-screen bg-base-200 w-full">
+      <div class="hero-content flex bg-red-300 p-4 space-x-4">
+        <img src="{% static 'ashim-d-silva-things.jpg' %}" class="max-w-sm rounded-lg shadow-2xl"/>
+        <div class="bg-green-300">
+          <h1 class="text-5xl font-bold">Things</h1>
+          <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
+            quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+          <button class="btn btn-primary">Get Started</button>
+        </div>
+      </div>
+    </div>
+    {#  <div class="flex flex-col space-y-8">#}
+    {##}
+    {#  <h2 class="text-4xl">Hi there. You're not logged in :(</h2>#}
+    {#  <p>To get all the "things" you need to log in, or set up an account.</p>#}
+    {#  <p>Though I suppose you could check out the About page.</p>#}
+    {#  <p>And don't bother trying to enter the url to the things, it'll just kick you to the login screen ;)</p>#}
+    {#  <a class="w-1/4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" href="{% url 'login' %}">Log In</a>#}
+    {#  <a class="w-1/4 focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" href="{% url 'signup' %}">Sign Up</a>#}
+    {#  </div>#}
+  {% endif %}
 {% endblock %}

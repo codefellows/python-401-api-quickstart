@@ -20,6 +20,13 @@ Template Project for starting up CRUD API with Django Rest Framework
 - Update ThingModel with fields you need
   - Make sure to update other modules that would be affected by Model customizations. E.g. serializers, tests, etc.
 - Rename `project/.env.sample` to `.env` and update as needed
-- Run makemigrations and migrate commands
-- Run `collectstatic` if needed.
+  - To generate secret key use `python3 -c "import secrets; print(secrets.token_urlsafe())"`
+- Run makemigrations and migrate commands when ready.
+- Run `python manage.py collectstatic`
+  - This repository includes static assets in repository. If you are using a Content Delivery Network then remove `staticfiles` from repository.
 - Optional: Update `api_tester.py`
+
+## Database
+
+**NOTE:** If you are using Postgres instead of SQLite then make sure to install `psycopg2-binary` and include in `requirements.txt`
+
