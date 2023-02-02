@@ -17,6 +17,12 @@ Template Project for starting up CRUD API with Django Rest Framework
     - `admin.py`
     - `serializers.py`
     - `permissions.py`
+  - "Front" files
+    - if including a customer facing portion of the site then update/recreate:
+      - `urls_front.py`
+      - `views_front.py`
+      - template files
+      - Make sure to update project `urls.py` to add routes to the "front".
 - Update ThingModel with fields you need
   - Make sure to update other modules that would be affected by Model customizations. E.g. serializers, tests, etc.
 - Rename `project/.env.sample` to `.env` and update as needed
@@ -29,4 +35,3 @@ Template Project for starting up CRUD API with Django Rest Framework
 ## Database
 
 **NOTE:** If you are using Postgres instead of SQLite then make sure to install `psycopg2-binary` and include in `requirements.txt`
-
