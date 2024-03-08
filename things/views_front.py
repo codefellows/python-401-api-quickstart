@@ -24,7 +24,7 @@ class ThingUpdateView(LoginRequiredMixin, UpdateView):
 class ThingCreateView(LoginRequiredMixin, CreateView):
     template_name = "things/thing_create.html"
     model = Thing
-    fields = ["name", "rating", "reviewer"] # "__all__" for all of them
+    fields = "__all__" # "__all__" for all of them
 
 
 class ThingDeleteView(LoginRequiredMixin, DeleteView):
